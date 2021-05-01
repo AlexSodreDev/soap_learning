@@ -1,10 +1,10 @@
 import express from 'express';
-
+import { SearchController } from "./controller/SearchController";
 const app = express();
 
-app.get("/cep", (request, response) => {
-  return response.json({ message: "Hello World - SOAP" })
-});
+const searchController = new SearchController();
+
+app.get("/cep/:cep", searchController.search);
 
 app.post("/cep", (request, response) => {
   return response.json({ message: "Dados salvos com sucesso!" })

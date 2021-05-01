@@ -12,9 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "reflect-metadata": "^0.1.13",
-    "soap": "^0.37.0",
-    "typeorm": "^0.2.32"
+    "soap": "^0.37.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.11",
