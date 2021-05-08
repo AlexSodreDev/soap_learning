@@ -1,10 +1,11 @@
 import express from 'express';
-import { SearchController } from "./controller/SearchController";
+import { AddressController } from "./controllers/AddressController";
+
 const app = express();
 
-const searchController = new SearchController();
+const addressController = new AddressController();
 
-app.get("/cep/:cep", searchController.search);
+app.get("/cep/:cep", addressController.search);
 
 app.post("/cep", (request, response) => {
   return response.json({ message: "Dados salvos com sucesso!" })
