@@ -1,26 +1,63 @@
-import { Request, Response } from "express";
-import { CorreiosService } from "../services/CorreiosService";
+import { Request, Response } from 'express';
+import { AddressService } from '../services/AddressService';
+import { container } from 'tsyringe';
 
 class AddressController {
 
-  private correiosService;
-
-  constructor() {
-    this.correiosService = new CorreiosService();
+  public findAddressWithCallback(req: Request, res: Response) {
+    const { cep } = req.query;
+    const addressService = container.resolve(AddressService);
+    addressService.findAddressByCepWithCallback(cep, (err, result) => {
+      if (err) {
+        return res.status(500).send(err);
+      } else {
+        return res.status(200).send(result.return);
+      }
+    });
   }
 
-  public async search(request: Request, response: Response) {
-    try {
-      const wsdl = 'https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl'
-      const cep = request.params.cep
-      const consultaCepResponse = await this.correiosService.findAddressByCep(cep);
+  public async findAddressTransformToPromise(req: Request, res: Response) {
+    const { cep } = req.query;
+    const addressService = container.resolve(AddressService);
+    const result = await addressService.findAddressByCepTransformToPromise(cep);
+    return res.status(200).send(result);
+  }
 
-      return response.json(consultaCepResponse);
-    } catch (err) {
-      console.log(err)
+  public async findAddress(req: Request, res: Response) {
+    const addressService = container.resolve(AddressService);
+    const { ceps } = req.query;
+    const cepsList = [].concat(ceps);
+    const result = []
+    for (const cep of cepsList) {
+      const cepResponse = await addressService.findAddressByCepAsync(cep);
+      result.push(cepResponse)
     }
-  };
-};
+    console.log(result)
+    return res.status(200).send(result);
+  }
 
+  public async findAllAddressesBlockingEventLoop(req: Request, res: Response) {
+    const addressService = container.resolve(AddressService);
+    const { ceps } = req.body;
+    const result = []
+    for (const cep of ceps) {
+      const cepResponse = await addressService.findAddressByCepAsync(cep);
+      console.log('CEP RESULT', cepResponse)
+      result.push(cepResponse)
+    }
+    console.log(result)
+    return res.status(200).send(result);
+  }
 
-export { AddressController };
+  public async findAllAddresses(req: Request, res: Response) {
+    const addressService = container.resolve(AddressService);
+    const { ceps } = req.body;
+    const result = await Promise.all(
+      ceps.map(cep => addressService.findAddressByCepAsync(cep))
+    );
+    console.log(result)
+    return res.status(200).send(result);
+  }
+}
+
+export { AddressController }

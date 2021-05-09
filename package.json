@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
+    "start": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/main.ts"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +14,9 @@
     "express": "^4.17.1",
     "reflect-metadata": "^0.1.13",
     "soap": "^0.37.0",
-    "typeorm": "^0.2.32"
+    "dotenv": "^9.0.0",
+    "typeorm": "^0.2.32",
+    "tsyringe": "^4.5.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.11",
