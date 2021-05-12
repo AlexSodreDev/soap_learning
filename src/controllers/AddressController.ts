@@ -4,13 +4,6 @@ import { container } from 'tsyringe';
 
 class AddressController {
 
-  public async findAddressTransformToPromise(req: Request, res: Response) {
-    const { cep } = req.query;
-    const addressService = container.resolve(AddressService);
-    const result = await addressService.findAddressByCepTransformToPromise(cep);
-    return res.status(200).send(result);
-  }
-
   public async findAddress(req: Request, res: Response) {
     const addressService = container.resolve(AddressService);
     const { ceps } = req.query;
