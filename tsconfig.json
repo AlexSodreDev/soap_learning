@@ -9,7 +9,8 @@
     "removeComments": false,
     "noImplicitAny": false,
     "outDir": "build",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   },
   "exclude": [
     "node_modules",
