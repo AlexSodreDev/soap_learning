@@ -6,24 +6,6 @@ class AddressService {
 
   private readonly WSDL_CORREIOS = process.env.WSDL_CORREIOS;
 
-  public async findAddressByCepTransformToPromise(cep) {
-    return new Promise((resolve, reject) => {
-      soap.createClient(this.WSDL_CORREIOS, (err, client) => {
-        if (err) {
-          reject(err)
-          console.log(err)
-        }
-        client.consultaCEP({ cep: cep }, (err, result) => {
-          if (err) {
-            console.log(err)
-            reject(err)
-          }
-          resolve(result.return)
-        });
-      });
-    })
-  }
-
   public async findAddressByCepAsync(cep) {
     const client = await soap.createClientAsync(this.WSDL_CORREIOS);
     const result = await client.consultaCEPAsync({ cep: cep });
