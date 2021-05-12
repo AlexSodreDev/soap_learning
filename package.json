@@ -11,12 +11,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^9.0.0",
     "express": "^4.17.1",
     "reflect-metadata": "^0.1.13",
     "soap": "^0.37.0",
-    "dotenv": "^9.0.0",
-    "typeorm": "^0.2.32",
-    "tsyringe": "^4.5.0"
+    "swagger-ui-express": "^4.1.6",
+    "tsyringe": "^4.5.0",
+    "typeorm": "^0.2.32"
   },
   "devDependencies": {
     "@types/express": "^4.17.11",
