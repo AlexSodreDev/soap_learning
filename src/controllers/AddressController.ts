@@ -4,18 +4,6 @@ import { container } from 'tsyringe';
 
 class AddressController {
 
-  public findAddressWithCallback(req: Request, res: Response) {
-    const { cep } = req.query;
-    const addressService = container.resolve(AddressService);
-    addressService.findAddressByCepWithCallback(cep, (err, result) => {
-      if (err) {
-        return res.status(500).send(err);
-      } else {
-        return res.status(200).send(result.return);
-      }
-    });
-  }
-
   public async findAddressTransformToPromise(req: Request, res: Response) {
     const { cep } = req.query;
     const addressService = container.resolve(AddressService);
