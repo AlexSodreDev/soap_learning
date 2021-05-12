@@ -5,7 +5,6 @@ const router = Router()
 
 const addressController = new AddressController()
 
-router.get('/addresses', addressController.findAddress)
-router.get('/addressesTeste', addressController.findAllAddresses)
+router.get('/addresses', addressController.findAllAddresses)
 
 export default router
