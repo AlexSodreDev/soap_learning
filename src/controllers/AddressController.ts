@@ -4,19 +4,6 @@ import { container } from 'tsyringe';
 
 class AddressController {
 
-  public async findAddress(req: Request, res: Response) {
-    const addressService = container.resolve(AddressService);
-    const { ceps } = req.query;
-    const cepsList = [].concat(ceps);
-    const result = []
-    for (const cep of cepsList) {
-      const cepResponse = await addressService.findAddressByCepAsync(cep);
-      result.push(cepResponse)
-    }
-    console.log(result)
-    return res.status(200).send(result);
-  }
-
   public async findAllAddressesBlockingEventLoop(req: Request, res: Response) {
     const addressService = container.resolve(AddressService);
     const { ceps } = req.body;
