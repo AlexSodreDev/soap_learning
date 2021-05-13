@@ -9,7 +9,7 @@
     }
   },
   "paths": {
-    "/AddressService": {
+    "/addresses": {
       "get": {
         "tags": [
           "Find Address"
@@ -18,7 +18,7 @@
         "description": "Use [cep number here,] to search for one or more addresses",
         "requestBody": {
           "content": {
-            "aplication/json": {
+            "application/json": {
               "schema": {
                 "type": "object",
                 "proprieties": {
