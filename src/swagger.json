@@ -7,5 +7,40 @@
     "contact": {
       "email": "testcontact@testmail.com"
     }
+  },
+  "paths": {
+    "/AddressService": {
+      "get": {
+        "tags": [
+          "Find Address"
+        ],
+        "summary": "Find Address",
+        "description": "Use [cep number here,] to search for one or more addresses",
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "type": "object",
+                "proprieties": {
+                  "ceps": {
+                    "type": "number"
+                  }
+                },
+                "example": {
+                  "ceps": [
+                    29101938
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result"
+          }
+        }
+      }
+    }
   }
 }
