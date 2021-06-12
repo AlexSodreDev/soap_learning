@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "integration": "jest --watchAll --testPathPattern=__integration_test__",
     "start": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/main.ts"
   },
   "keywords": [],

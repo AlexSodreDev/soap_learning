@@ -8,11 +8,18 @@ class AddressController {
     const addressService = container.resolve(AddressService);
     const { ceps } = req.query;
     const cepList = [].concat(ceps)
-    const result = await Promise.all(
-      cepList.map(cep => addressService.findAddressByCepAsync(cep))
-    );
-    console.log(result)
-    return res.status(200).send(result);
+    try {
+      const result = await Promise.all(
+        cepList.map(cep => addressService.findAddressByCepAsync(cep))
+      );
+      console.log(result)
+      return res.status(200).send(result);
+
+    } catch (error) {
+      //console.log(error)
+      return res.status(400).send({ message: error.message });
+
+    }
   }
 }
 
